@@ -538,16 +538,7 @@ class LanguageCode extends AbstractRule
         ];
     }
 
-    private function getLanguageCodeList($index)
-    {
-        $languageList = [];
-
-        foreach ($this->languageCodeList as $language) {
-            $languageList[] = $language[$index];
-        }
-
-        return $languageList;
-    }
+    
 
     public function validate($input)
     {

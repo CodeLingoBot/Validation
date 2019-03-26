@@ -25,13 +25,5 @@ class Phone extends AbstractRegexRule
         );
     }
 
-    private function replaceParams($format, array $params)
-    {
-        $string = $format;
-        foreach ($params as $name => $value) {
-            $string = str_replace('{'.$name.'}', $value, $string);
-        }
-
-        return $string;
-    }
+    
 }

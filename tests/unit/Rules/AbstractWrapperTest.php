@@ -26,13 +26,7 @@ class AbstractWrapperTest extends TestCase
         $wrapper->getValidatable();
     }
 
-    private function bindValidatable($wrapper, $validatable)
-    {
-        $reflectionObject = new ReflectionObject($wrapper);
-        $reflectionProperty = $reflectionObject->getProperty('validatable');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($wrapper, $validatable);
-    }
+    
 
     public function testShouldReturnDefinedValidatable()
     {

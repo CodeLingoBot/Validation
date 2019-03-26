@@ -141,89 +141,11 @@ class FactorTest extends TestCase
         return $tests;
     }
 
-    private function thingsThatAreNotIntegers()
-    {
-        return [
-            0.5,
-            1.5,
-            -0.5,
-            -1.5,
-            PHP_INT_MAX + 1,
-            // Non integer values.
-            $this->randomFloatBeweenZeroAndOne(),
-            -$this->randomFloatBeweenZeroAndOne(),
-            'a',
-            'foo',
-            // Randomish string.
-            uniqid('a'),
-            // Non-scalars.
-            [],
-            new \StdClass(),
-            new \DateTime(),
-            null,
-            true,
-            false,
-        ];
-    }
+    
 
-    private function randomFloatBeweenZeroAndOne()
-    {
-        return mt_rand(1, mt_getrandmax() - 1) / mt_getrandmax();
-    }
+    
 
-    private function generateNegativeCombinations($tests)
-    {
-        // Negate all the dividends.
-        $tests = array_merge(
-            $tests,
-            array_map(
-                function ($test) {
-                    return [-$test[0], $test[1]];
-                },
-                $tests
-            )
-        );
+    
 
-        // Negate all the inputs.
-        $tests = array_merge(
-            $tests,
-            array_map(
-                function ($test) {
-                    return [$test[0], -$test[1]];
-                },
-                $tests
-            )
-        );
-
-        return $tests;
-    }
-
-    private function generateStringAndFloatCombinations($tests)
-    {
-        $base_tests = $tests;
-
-        // Test everything again as a string.
-        $tests = array_merge(
-            $tests,
-            array_map(
-                function ($test) {
-                    return [(string) $test[0], (string) $test[1]];
-                },
-                $base_tests
-            )
-        );
-
-        // Test everything again as a float.
-        $tests = array_merge(
-            $tests,
-            array_map(
-                function ($test) {
-                    return [(float) $test[0], (float) $test[1]];
-                },
-                $base_tests
-            )
-        );
-
-        return $tests;
-    }
+    
 }

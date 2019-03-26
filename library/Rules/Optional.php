@@ -20,10 +20,7 @@ class Optional extends AbstractWrapper
         $this->validatable = $rule;
     }
 
-    private function isOptional($input)
-    {
-        return in_array($input, [null, ''], true);
-    }
+    
 
     public function assert($input)
     {

@@ -29,29 +29,9 @@ class Sf extends AbstractRule
         $this->constraint = $this->createSymfonyConstraint($this->name, $params);
     }
 
-    private function createSymfonyConstraint($constraintName, $constraintConstructorParameters = [])
-    {
-        $fullClassName = sprintf(self::SYMFONY_CONSTRAINT_NAMESPACE, $constraintName);
-        try {
-            $constraintReflection = new ReflectionClass($fullClassName);
-        } catch (ReflectionException $previousException) {
-            $baseExceptionMessage = 'Symfony/Validator constraint "%s" does not exist.';
-            $exceptionMessage = sprintf($baseExceptionMessage, $constraintName);
-            throw new ComponentException($exceptionMessage, 0, $previousException);
-        }
-        if ($constraintReflection->hasMethod('__construct')) {
-            return $constraintReflection->newInstanceArgs($constraintConstructorParameters);
-        }
+    
 
-        return $constraintReflection->newInstance();
-    }
-
-    private function returnViolationsForConstraint($valueToValidate, Constraint $symfonyConstraint)
-    {
-        $validator = Validation::createValidator(); // You gotta love those Symfony namings
-
-        return $validator->validateValue($valueToValidate, $symfonyConstraint);
-    }
+    
 
     public function assert($input)
     {

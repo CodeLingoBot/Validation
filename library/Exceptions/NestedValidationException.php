@@ -40,22 +40,7 @@ class NestedValidationException extends ValidationException implements IteratorA
      *
      * @return ValidationException
      */
-    private function getExceptionForPath($path, ValidationException $exception)
-    {
-        if ($path === $exception->guessId()) {
-            return $exception;
-        }
-
-        if (!$exception instanceof self) {
-            return $exception;
-        }
-
-        foreach ($exception as $subException) {
-            return $subException;
-        }
-
-        return $exception;
-    }
+    
 
     /**
      * @param array $paths
@@ -111,41 +96,11 @@ class NestedValidationException extends ValidationException implements IteratorA
     /**
      * @return RecursiveIteratorIterator
      */
-    private function getRecursiveIterator()
-    {
-        $exceptionIterator = new RecursiveExceptionIterator($this);
-        $recursiveIteratorIterator = new RecursiveIteratorIterator(
-            $exceptionIterator,
-            RecursiveIteratorIterator::SELF_FIRST
-        );
+    
 
-        return $recursiveIteratorIterator;
-    }
+    
 
-    private function isSkippable(ValidationException $exception)
-    {
-        if (!$exception instanceof self) {
-            return false;
-        }
-
-        if (1 !== $exception->getRelated()->count()) {
-            return false;
-        }
-
-        if (!$exception->hasCustomTemplate()) {
-            return true;
-        }
-
-        return $this->hasChildTemplate($exception);
-    }
-
-    private function hasChildTemplate(self $exception)
-    {
-        $exception->getRelated()->rewind();
-        $childException = $exception->getRelated()->current();
-
-        return $childException->getMessage() === $exception->getMessage();
-    }
+    
 
     /**
      * @return SplObjectStorage
@@ -271,10 +226,7 @@ class NestedValidationException extends ValidationException implements IteratorA
     /**
      * @return bool
      */
-    private function isRelated($name, ValidationException $exception)
-    {
-        return ($exception->getId() === $name || $exception->getName() === $name);
-    }
+    
 
     /**
      * @return ValidationException

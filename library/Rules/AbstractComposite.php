@@ -123,20 +123,5 @@ abstract class AbstractComposite extends AbstractRule
         return $exceptions;
     }
 
-    private function setExceptionTemplate(ValidationException $exception)
-    {
-        if (null === $this->template || $exception->hasCustomTemplate()) {
-            return;
-        }
-
-        $exception->setTemplate($this->template);
-
-        if (!$exception instanceof NestedValidationException) {
-            return;
-        }
-
-        foreach ($exception->getRelated() as $relatedException) {
-            $this->setExceptionTemplate($relatedException);
-        }
-    }
+    
 }

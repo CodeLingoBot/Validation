@@ -306,15 +306,7 @@ class CountryCode extends AbstractRule
         ];
     }
 
-    private function getCountryCodeList($index)
-    {
-        $countryList = [];
-        foreach ($this->countryCodeList as $country) {
-            $countryList[] = $country[$index];
-        }
-
-        return $countryList;
-    }
+    
 
     public function validate($input)
     {

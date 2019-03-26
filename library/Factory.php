@@ -23,13 +23,7 @@ class Factory
         return $this->rulePrefixes;
     }
 
-    private function filterRulePrefix($rulePrefix)
-    {
-        $namespaceSeparator = '\\';
-        $rulePrefix = rtrim($rulePrefix, $namespaceSeparator);
-
-        return $rulePrefix.$namespaceSeparator;
-    }
+    
 
     public function appendRulePrefix($rulePrefix)
     {

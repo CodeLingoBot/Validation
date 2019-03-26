@@ -60,42 +60,14 @@ class Size extends AbstractRule
      *
      * @return int
      */
-    private function toBytes($size)
-    {
-        $value = $size;
-        $units = ['b', 'kb', 'mb', 'gb', 'tb', 'pb', 'eb', 'zb', 'yb'];
-        foreach ($units as $exponent => $unit) {
-            if (!preg_match("/^(\d+(.\d+)?){$unit}$/i", $size, $matches)) {
-                continue;
-            }
-            $value = $matches[1] * pow(1024, $exponent);
-            break;
-        }
-
-        if (!is_numeric($value)) {
-            throw new ComponentException(sprintf('"%s" is not a recognized file size.', $size));
-        }
-
-        return $value;
-    }
+    
 
     /**
      * @param int $size
      *
      * @return bool
      */
-    private function isValidSize($size)
-    {
-        if (null !== $this->minValue && null !== $this->maxValue) {
-            return ($size >= $this->minValue && $size <= $this->maxValue);
-        }
-
-        if (null !== $this->minValue) {
-            return ($size >= $this->minValue);
-        }
-
-        return ($size <= $this->maxValue);
-    }
+    
 
     /**
      * {@inheritdoc}

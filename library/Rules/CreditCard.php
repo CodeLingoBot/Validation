@@ -78,25 +78,7 @@ class CreditCard extends AbstractRule
      *
      * @return bool
      */
-    private function verifyMod10($input)
-    {
-        $sum = 0;
-        $input = strrev($input);
-        for ($i = 0; $i < strlen($input); ++$i) {
-            $current = substr($input, $i, 1);
-            if ($i % 2 == 1) {
-                $current *= 2;
-                if ($current > 9) {
-                    $firstDigit = $current % 10;
-                    $secondDigit = ($current - $firstDigit) / 10;
-                    $current = $firstDigit + $secondDigit;
-                }
-            }
-            $sum += $current;
-        }
-
-        return $sum % 10 == 0;
-    }
+    
 
     /**
      * Returns whether the input matches the defined credit card brand or not.
@@ -105,14 +87,5 @@ class CreditCard extends AbstractRule
      *
      * @return bool
      */
-    private function verifyBrand($input)
-    {
-        if (null === $this->brand) {
-            return true;
-        }
-
-        $pattern = $this->brands[$this->brand];
-
-        return preg_match($pattern, $input) > 0;
-    }
+    
 }

@@ -27,15 +27,7 @@ class KeySet extends AllOf
      *
      * @return Validatable
      */
-    private function filterAllOf(AllOf $rule)
-    {
-        $rules = $rule->getRules();
-        if (count($rules) != 1) {
-            throw new ComponentException('AllOf rule must have only one Key rule');
-        }
-
-        return current($rules);
-    }
+    
 
     /**
      * {@inheritdoc}
@@ -85,35 +77,12 @@ class KeySet extends AllOf
      *
      * @return bool
      */
-    private function hasValidStructure($input)
-    {
-        if (!is_array($input)) {
-            return false;
-        }
-
-        foreach ($this->getRules() as $keyRule) {
-            if (!array_key_exists($keyRule->reference, $input) && $keyRule->mandatory) {
-                return false;
-            }
-
-            unset($input[$keyRule->reference]);
-        }
-
-        return (count($input) == 0);
-    }
+    
 
     /**
      * @throws KeySetException
      */
-    private function checkKeys($input)
-    {
-        if (!$this->hasValidStructure($input)) {
-            $params = ['keys' => $this->getKeys()];
-            $exception = $this->reportError($input, $params);
-
-            throw $exception;
-        }
-    }
+    
 
     /**
      * {@inheritdoc}

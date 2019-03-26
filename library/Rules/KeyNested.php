@@ -27,44 +27,13 @@ class KeyNested extends AbstractRelated
         return true;
     }
 
-    private function getReferencePieces()
-    {
-        return explode('.', rtrim($this->reference, '.'));
-    }
+    
 
-    private function getValueFromArray($array, $key)
-    {
-        if (!array_key_exists($key, $array)) {
-            $message = sprintf('Cannot select the key %s from the given array', $this->reference);
-            throw new ComponentException($message);
-        }
+    
 
-        return $array[$key];
-    }
+    
 
-    private function getValueFromObject($object, $property)
-    {
-        if (empty($property) || !property_exists($object, $property)) {
-            $message = sprintf('Cannot select the property %s from the given object', $this->reference);
-            throw new ComponentException($message);
-        }
-
-        return $object->{$property};
-    }
-
-    private function getValue($value, $key)
-    {
-        if (is_array($value) || $value instanceof ArrayAccess) {
-            return $this->getValueFromArray($value, $key);
-        }
-
-        if (is_object($value)) {
-            return $this->getValueFromObject($value, $key);
-        }
-
-        $message = sprintf('Cannot select the property %s from the given data', $this->reference);
-        throw new ComponentException($message);
-    }
+    
 
     public function getReferenceValue($input)
     {

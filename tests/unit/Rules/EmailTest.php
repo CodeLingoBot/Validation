@@ -30,25 +30,11 @@ function class_exists($className)
  */
 class EmailTest extends TestCase
 {
-    private function setEmailValidatorExists($value)
-    {
-        $GLOBALS['class_exists']['Egulias\EmailValidator\EmailValidator'] = (bool) $value;
-    }
+    
 
-    private function resetClassExists()
-    {
-        unset($GLOBALS['class_exists']);
-    }
+    
 
-    private function getEmailValidatorMock()
-    {
-        $emailValidatorMock = $this
-            ->getMockBuilder('Egulias\\EmailValidator\\EmailValidator')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        return $emailValidatorMock;
-    }
+    
 
     protected function setUp()
     {

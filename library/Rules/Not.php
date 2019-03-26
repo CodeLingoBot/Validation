@@ -51,22 +51,5 @@ class Not extends AbstractRule
             ->setMode(ValidationException::MODE_NEGATIVE);
     }
 
-    private function absorbAllOf(AllOf $rule, $input)
-    {
-        $rules = $rule->getRules();
-        while (($current = array_shift($rules))) {
-            $rule = $current;
-            if (!$rule instanceof AllOf) {
-                continue;
-            }
-
-            if (!$rule->validate($input)) {
-                continue;
-            }
-
-            $rules = $rule->getRules();
-        }
-
-        return $rule;
-    }
+    
 }

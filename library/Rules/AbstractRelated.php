@@ -47,12 +47,7 @@ abstract class AbstractRelated extends AbstractRule
         return $this;
     }
 
-    private function decision($type, $hasReference, $input)
-    {
-        return (!$this->mandatory && !$hasReference)
-            || (is_null($this->validator)
-                || $this->validator->$type($this->getReferenceValue($input)));
-    }
+    
 
     public function assert($input)
     {

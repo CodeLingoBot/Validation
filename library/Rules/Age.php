@@ -33,42 +33,9 @@ class Age extends AllOf
         $this->setMaxAge($maxAge);
     }
 
-    private function createDateTimeFromAge($age)
-    {
-        $interval = sprintf('-%d years', $age);
+    
 
-        return new DateTime($interval);
-    }
+    
 
-    private function setMaxAge($maxAge)
-    {
-        $this->maxAge = $maxAge;
-
-        if (null === $maxAge) {
-            return;
-        }
-
-        $minDate = $this->createDateTimeFromAge($maxAge);
-        $minDate->setTime(0, 0, 0);
-
-        $minRule = new Min($minDate, true);
-
-        $this->addRule($minRule);
-    }
-
-    private function setMinAge($minAge)
-    {
-        $this->minAge = $minAge;
-
-        if (null === $minAge) {
-            return;
-        }
-
-        $maxDate = $this->createDateTimeFromAge($minAge);
-        $maxDate->setTime(23, 59, 59);
-
-        $maxRule = new Max($maxDate, true);
-
-        $this->addRule($maxRule);
-    }
+    
 }

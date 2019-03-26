@@ -30,19 +30,5 @@ class FilterVar extends Callback
         $this->arguments = $arguments;
     }
 
-    private function isValidFilter($filter)
-    {
-        return in_array(
-            $filter,
-            [
-                FILTER_VALIDATE_BOOLEAN,
-                FILTER_VALIDATE_EMAIL,
-                FILTER_VALIDATE_FLOAT,
-                FILTER_VALIDATE_INT,
-                FILTER_VALIDATE_IP,
-                FILTER_VALIDATE_REGEXP,
-                FILTER_VALIDATE_URL,
-            ]
-        );
-    }
+    
 }

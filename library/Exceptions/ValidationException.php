@@ -315,10 +315,7 @@ class ValidationException extends InvalidArgumentException implements ExceptionI
         return $this;
     }
 
-    private function buildMessage()
-    {
-        $this->message = $this->getMainMessage();
-    }
+    
 
     protected function buildTemplate()
     {
